@@ -25,6 +25,9 @@ export localStorage from './localStorage'
 export location from './location'
 export * from './WindowProperties'
 
+// Re-export globals available in WeChat mini-game runtime
+const { setTimeout, setInterval, clearTimeout, clearInterval, requestAnimationFrame, cancelAnimationFrame } = globalThis;
+
 // 暴露全局的 canvas
 GameGlobal.screencanvas = GameGlobal.screencanvas || new Canvas()
 const canvas = GameGlobal.screencanvas;
