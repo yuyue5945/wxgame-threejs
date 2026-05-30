@@ -36,6 +36,7 @@ jobs:
             VERSION="1.0.${{ github.run_number }}"
           fi
           npx miniprogram-ci upload \
+            --type miniGame \
             --pp . \
             --pkp private.key \
             --appid wx62b97c93278af4b0 \

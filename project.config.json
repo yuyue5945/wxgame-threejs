@@ -9,9 +9,9 @@
 	},
 	"compileType": "game",
 	"libVersion": "2.0.2",
-	"appid": "touristappid",
+	"appid": "wx62b97c93278af4b0",
 	"projectname": "wxgame-threejs",
-	"isGameTourist": true,
+	"isGameTourist": false,
 	"condition": {
 		"search": {
 			"current": -1,
