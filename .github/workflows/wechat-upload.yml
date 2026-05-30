@@ -1,4 +1,4 @@
-name: 上传到微信小程序
+name: 上传到微信小游戏
 
 on:
   push:
@@ -21,24 +21,15 @@ jobs:
         with:
           node-version: 18
 
-      - name: 安装最新 miniprogram-ci
-        run: npm install -g miniprogram-ci@latest
+      - name: 安装 miniprogram-ci
+        run: npm install miniprogram-ci
 
       - name: 写入上传密钥
         env:
           KEY: ${{ secrets.WECHAT_KEY }}
         run: python3 -c "import os; open('private.key','w').write(os.environ['KEY'])"
 
-      - name: 上传代码到微信平台
-        run: |
-          VERSION="${{ github.event.inputs.version }}"
-          if [ -z "$VERSION" ]; then
-            VERSION="1.0.${{ github.run_number }}"
-          fi
-          npx miniprogram-ci upload \
-            --type miniGame \
-            --pp . \
-            --pkp private.key \
-            --appid wx62b97c93278af4b0 \
-            --uv "$VERSION" \
-            --ud "来自 GitHub Actions 自动上传"
+      - name: 上传到微信小游戏
+        env:
+          VERSION: ${{ github.event.inputs.version || format('1.0.{0}', github.run_number) }}
+        run: node upload.js
