@@ -24,9 +24,10 @@ jobs:
       - name: 安装 miniprogram-ci
         run: npm install -g miniprogram-ci
 
-      - name: 写入上传密钥(base64解码)
-        run: |
-          echo "${{ secrets.WECHAT_KEY_B64 }}" | base64 -d > private.key
+      - name: 写入上传密钥
+        env:
+          KEY: ${{ secrets.WECHAT_KEY }}
+        run: python3 -c "import os; open('private.key','w').write(os.environ['KEY'])"
 
       - name: 上传代码到微信平台
         run: |
