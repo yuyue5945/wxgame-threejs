@@ -24,9 +24,9 @@ jobs:
       - name: 安装 miniprogram-ci
         run: npm install -g miniprogram-ci
 
-      - name: 写入上传密钥
+      - name: 写入上传密钥(base64解码)
         run: |
-          echo "${{ secrets.WECHAT_PRIVATE_KEY }}" > private.key
+          echo "${{ secrets.WECHAT_KEY_B64 }}" | base64 -d > private.key
 
       - name: 上传代码到微信平台
         run: |
@@ -39,5 +39,4 @@ jobs:
             --pkp private.key \
             --appid wx62b97c93278af4b0 \
             --uv "$VERSION" \
-            --ud "来自 GitHub Actions 自动上传" \
-            --enable-cloud-download true
+            --ud "来自 GitHub Actions 自动上传"
