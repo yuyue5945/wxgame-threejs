@@ -21,8 +21,8 @@ jobs:
         with:
           node-version: 18
 
-      - name: 安装 miniprogram-ci
-        run: npm install -g miniprogram-ci
+      - name: 安装最新 miniprogram-ci
+        run: npm install -g miniprogram-ci@latest
 
       - name: 写入上传密钥
         env:
